@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Console Tricks</title>
+  </head>
+  <body>
+    
+    <p onclick="makeGreen()">×BREAK×DOWN×</p>
+    
+    <script>
+      const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+      
+      function makeGreen() {
+        const p = document.querySelector('p');
+        p.style.color = '#BADA55';
+        p.style.fontSize = '50px';
+      }
+      
+      // Regular
+      console.log('Hello');
+      
+      // Interpolated
+      console.log('Hello %s', 'Dude');
+      // ES6 Interpolation
+      //console.log(`Hello ${var}`);
+      
+      // Styled
+      console.log('%c This is some cool text', 'font-size: 18px; background-color: blue;');
+      
+      // warning!
+      console.warn('Oh crap! At least there\'s a stacktrace!');
+      
+      // Error :|
+      console.error('You messed up');
+      
+      // Info
+      console.info('This is some informative text');
+      
+      // Testing
+      const p = document.querySelector('p');
+      
+      console.assert(p.classList.contains('something'), 'Nope! Does not contain a class of something');
+      
+      // clearing
+      console.clear();
+      
+      // Viewing DOM Elements
+      // This is cool because it shows you everthing that element contains
+      console.dir(p);
+      
+      // Grouping together
+      // Group the objects together. You can use just .group to show a non-collapsed view
+      dogs.forEach(dog => {
+        console.groupCollapsed(`${dog.name}`);
+        console.log(`This is ${dog.name}`);
+        console.log(`${dog.name} is ${dog.age} years old`);
+        console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+        console.groupEnd(`${dog.name}`);
+        
+      });
+      
+      // counting
+      // Count how many times this is on the page
+      console.count('Steve');
+      
+      // timing
+      // How long it takes for something to happen. There is also the Performance interface.
+      console.time('fetching data');
+      fetch('https://api.github.com/users/wesbos')
+        .then(data => data.json())
+        .then(data => {
+          console.timeEnd('fetching data');
+          console.log(data);
+        });
+      
+      // table
+      // Represent objects in a table
+      console.table(dogs);
+      
+    </script>
+  </body>
+</html>
