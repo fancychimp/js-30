@@ -49,7 +49,6 @@ function handleFullscreen() {
   }
 }
 
-
 video.addEventListener('click', togglePlay);
 video.addEventListener('play', updateButton);
 video.addEventListener('pause', updateButton);
@@ -60,6 +59,12 @@ toggle.addEventListener('click', togglePlay);
 skipButtons.forEach(button => button.addEventListener('click', skip));
 
 fullscreenButton.addEventListener('click', handleFullscreen);
+fullscreenButton.addEventListener('keyup', (e) => {
+  if (e.key == 'Escape' && isFullscreen == true) {
+    player.setAttribute("style", "max-width: 750px; width: 100%;");
+    isFullscreen = false;
+  }
+})
 
 let mousedown = false;
 
